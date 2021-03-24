@@ -1,0 +1,44 @@
+name: "Automation Power"
+on:
+  pull_request:
+  push: { branches: master}
+
+jobs:
+  scan:
+    name: "Power TESTING"
+    runs-on: ubuntu-latest
+
+    strategy:
+      parameters:
+        # required parameters to open Jira issue with attachment
+        open-jira-issues: ["--server https://kittoh.atlassian.net \
+                            --project BH1 \
+                            --attachment_path power.py
+                          "]
+      steps:
+      - uses: actions/checkout@v2
+      # - name: OWASP ZAP Baseline Scan
+      #   # This ZAP Scan is ran from a Docker Image
+      #   # The command below is basically the exact command that is used to run ZAP Scan
+      #   # from a Docker Image
+      #   # More details here: https://www.zaproxy.org/docs/docker/about/
+      #   run: docker run -v S\:\\K\\Haxx\\codes\\scanner:/zap/wrk:rw -t owasp/zap2docker-stable \ 
+      #         zap-baseline.py \
+      #        -t http://testhtml5.vulnweb.com \
+      #        -g alerts.conf \
+      #        -J test2.json
+
+      # Python Testing
+    
+    - name: Python Power
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    
+      - name: Install Dependencies
+        run: |
+            pip install jira
+            pip install click
+        
+    - name: Python Power
+      run: python3 attach.py ${{ arguments.open-jira-issues }}
