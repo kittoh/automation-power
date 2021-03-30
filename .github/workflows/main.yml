@@ -19,13 +19,13 @@ jobs:
     #     target: 'http://testhtml5.vulnweb.com'
 
     # Part 1
-    - name: Docker run - OWASP ZAP Baseline Scan
-        # This ZAP Scan is ran from a Docker Image
-        # The command below is basically the exact command that is used to run ZAP Scan
-        # from a Docker Image
-        # More details here: https://www.zaproxy.org/docs/docker/about/
-      run: |
-        docker run -v S\:\\K\\Haxx\\codes\\automation-power:/zap/wrk:rw -t owasp/zap2docker-stable zap-baseline.py -t http://testhtml5.vulnweb.com -g alerts.conf -J test2.json
+    # - name: Docker run - OWASP ZAP Baseline Scan
+    #     # This ZAP Scan is ran from a Docker Image
+    #     # The command below is basically the exact command that is used to run ZAP Scan
+    #     # from a Docker Image
+    #     # More details here: https://www.zaproxy.org/docs/docker/about/
+    #   run: |
+    #     docker run -v $(pwd):/zap/wrk:rw -t owasp/zap2docker-stable zap-baseline.py -t http://testhtml5.vulnweb.com -g alerts.conf -J test2.json
         
     # Part 2
     - name: Python Power
@@ -39,15 +39,4 @@ jobs:
         pip install click
     
     - name: Python Test
-    - run: |
-        python3 power.py
-    - run: |
-        python3 power.py
-    - run: |
-        python3 power.py
-    - run: |
-        python3 power.py
-    
-      
-    
-
+    - run: python power.py
