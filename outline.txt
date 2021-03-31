@@ -1,0 +1,21 @@
+POWER CHAINING
+
+This blog showcases the power of independent tools chained together to create
+an automated pipeline that has the capability of testing a web application for vulnerabilities.
+The pipeline harnesses the power of GitHub Actions, OWASP Zap Scanner, Docker, Jira, and Python.
+
+The FLOW
+
+The pipeline is structured in GitHub Actions which will be executed locally
+- Initially, OWASP Zap Scan will be ran against a preferred target
+    - Zap will be ran from a Docker Image
+      - running it from Docker will give maximum control over parameters
+    - Full Scan, Baseline Scan and API Scan are the types of scans that can be ran
+      - https://www.zaproxy.org/docs/docker/about/ - here's the link for more details
+    - on the first run, alerts.conf will be created, this will be then configured
+      for the succeeding run
+      - this controls which results you want to ignore or priotize by tuning it within the file
+    - the output report can be in html, md, xml & json
+
+- Then, the output report will be attached upon the creation of Jira issue
+    - this will be handled by a Python script
