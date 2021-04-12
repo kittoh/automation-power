@@ -52,9 +52,13 @@ def open_jira_ticket(project, server, attachment_path):
 
 def jira_login(server):
 
-    import os
-    email = os.getenv("JIRA_EMAIL")
-    api_key = os.getenv("JIRA_API_KEY")
+    # import os
+    # email = os.getenv("JIRA_EMAIL")
+    # api_key = os.getenv("JIRA_API_KEY")
+    
+    email = 'kitto.hernandes@gmail.com'
+    api_key = 'bPhSoOsR0vp8LRCDPCIIF40B'
+    
     options = {
         "server": server,
     }
@@ -75,4 +79,4 @@ if __name__ == '__main__':
     open_jira_ticket()
 
 # SAMPLE COMMAND
-# python attach.py --server https://yourserver.atlassian.net --project project_name --attachment_path sample.py
+# python attach.py --server https://yourserver.atlassian.net --project project_name --attachment_path sample.json
